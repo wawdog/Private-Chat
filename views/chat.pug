@@ -1,0 +1,42 @@
+html
+  head
+    title Template
+    link(rel='stylesheet', href='/assets/framework/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/assets/framework/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/assets/css/chat.css')
+  body
+    .col-md-3
+      // DIRECT CHAT
+      .box.box-warning.direct-chat.direct-chat-warning
+        .box-header.with-border
+          h3.box-title Direct Chat
+          .box-tools.pull-right
+            span.badge.notify-number(data-toggle='tooltip', title='3 New Messages',id="all-notify")
+            
+            button.btn.btn-box-tool(data-toggle='tooltip', title='Contacts', data-widget='chat-pane-toggle')
+              i.fa.fa-users
+            button.btn.btn-box-tool(data-widget='collapse')
+              i.fa.fa-minus
+            button.btn.btn-box-tool(data-widget='remove')
+              i.fa.fa-times
+        // /.box-header
+        .box-body
+          // Conversations are loaded here
+          .direct-chat-messages
+            // Message. Default to the left
+
+          .direct-chat-contacts
+            ul.contacts-list
+             
+        .box-footer
+          .input-group
+            input.form-control(type='text', name='message', placeholder='Type Message ...',id="message-to-send")
+            span.input-group-btn
+              button.btn.btn-warning.btn-flat(type='button',id="send-message") Send
+        // /.box-footer
+      // /.direct-chat
+    script(src='/assets/framework/jquery/jquery.min.js')
+    script(src='/assets/framework/moment/moment.js')
+    script(src='/assets/js/socket.io.js')
+    script(src='/assets/js/chat.js')
+    

@@ -1,0 +1,112 @@
+html
+  head
+    meta(charset='utf-8')
+    title Authentication failed
+    link(href='https://fonts.googleapis.com/css?family=Orbitron', rel='stylesheet')
+    style.csscreations.
+      /*basic reset*/
+      * {margin: 0; padding: 0;}
+      /*adding a black bg to the body to make things clearer*/
+      body {background: black;}
+      canvas {display: block;}
+      .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            background-color: rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .loading-helper {
+            position: absolute;
+            top: 40%;
+            left: 36%;
+            display: table-cell;
+            vertical-align: middle;
+            z-index: 3;
+        }
+
+        .loading-content {
+            position: relative;
+            top: -50%;
+            margin: 0 auto;
+            width: 562px;
+            color: #fff;
+        }
+
+        .loading-content p{
+            font-size:38px;
+            font-family: 'Orbitron', sans-serif;
+            color:#0F0;
+            overflow: hidden; /* Ensures the content is not revealed until the animation */
+            border-right: .15em solid orange; /* The typwriter cursor */
+            white-space: nowrap; /* Keeps the content on a single line */
+            margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+            letter-spacing: .15em; /* Adjust as needed */
+            animation: 
+                typing 3.5s steps(30, end),
+                blink-caret .5s step-end infinite;
+        }
+
+        .typewriter h1 {
+          color: #fff;
+          font-family: monospace;
+          overflow: hidden; /* Ensures the content is not revealed until the animation */
+          border-right: .15em solid orange; /* The typwriter cursor */
+          white-space: nowrap; /* Keeps the content on a single line */
+          margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+          letter-spacing: .15em; /* Adjust as needed */
+          animation: 
+            typing 3.5s steps(30, end),
+            blink-caret .5s step-end infinite;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+          from { width: 0 }
+          to { width: 100% }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+          from, to { border-color: transparent }
+          50% { border-color: orange }
+        }
+  body
+    canvas#c(height='880', width='1203')
+    .loading-overlay
+          .loading-helper
+            .loading-content
+              p.text-center #{text}
+              
+    script.
+      var c = document.getElementById("c");
+      var ctx = c.getContext("2d");
+      c.height = window.innerHeight;
+      c.width = window.innerWidth;
+      var auth = '#{text}';
+      auth = auth.split("");
+      var font_size = 10;
+      var columns = c.width / font_size;
+      var drops = [];
+      for (var x = 0; x < columns; x++)
+      drops[x] = 1;
+      function draw()
+      {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.fillStyle = "#0F0";
+      ctx.font = font_size + "px arial";
+      for (var i = 0; i < drops.length; i++)
+      {
+      var text = auth[Math.floor(Math.random() * auth.length)];
+      ctx.fillText(text, i * font_size, drops[i] * font_size);
+      if (drops[i] * font_size > c.height && Math.random() > 0.975)
+      drops[i] = 0;
+      drops[i]++;
+      }
+      }
+      setInterval(draw, 33);

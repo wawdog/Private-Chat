@@ -1,0 +1,36 @@
+﻿doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+        title="Chat"
+        link(rel='stylesheet', type='text/css', href='/assets/framework/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet', type='text/css', href='/assets/framework/font-awesome/css/font-awesome.min.css')
+        link(rel='stylesheet', type='text/css', href='/assets/css/login.css')
+        
+    body
+        form#formLogin(action='/users/login', method='post')
+            .login
+                input(type='text', placeholder='email@baezeni.com', name='email',id='email')
+                br
+                input(type='password', placeholder='password', name='password', id='password')
+                br
+                input(type='submit', value='Login', id='login')
+
+        script(src='/assets/framework/jquery/jquery.min.js')
+        script.
+            jQuery(document).ready(function() {
+                $('#formLogin').submit(function(){
+                    var username = $(this).find('.email').val();
+                    var password = $(this).find('.password').val();
+                    if(username === '') {
+                        $(this).parent().find('.email').focus();
+                        return false;
+                    }
+                    if(password === '') {
+                        $(this).parent().find('.password').focus();
+                        return false;
+                    }else{
+                        return true;
+                    }
+                });
+            });

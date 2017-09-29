@@ -1,0 +1,7 @@
+node_modules/*
+.vs/*
+config/*
+
+/nbproject/private/
+config/authenticate.js
+config/database.js
