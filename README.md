@@ -1,3 +1,3 @@
-﻿# BZ Chat 
+﻿# Private Chat 
 
 
